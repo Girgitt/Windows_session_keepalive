@@ -14,3 +14,6 @@ Lock suspension can be enabled or disabled using a context menu available under 
 
 Program also cycles the mode with a left-button double-click. 
 
+
+License: Apache 2.0
+
