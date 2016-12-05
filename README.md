@@ -1,7 +1,7 @@
 # desktop_lock_suspender
 A tiny taskbar-icon type of program to disable windows auto-locking.
 
-Windows build is available in dist folder. Just unpack and run the exe. 
+Windows build is available in dist folder. Just unpack and run the exe or use archive attached to the release.
 
 
 Program stays in the taskbar and displays current operation mode using an icon:
