@@ -24,6 +24,30 @@ from threading import Thread
 import ctypes
 import time
 import os
+import logging
+from logging.handlers import  RotatingFileHandler
+
+
+def get_logging_format():
+    return '%(asctime)s : %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s'
+
+logging.basicConfig(format=get_logging_format(), datefmt='%Y %b %d %H:%M:%S')
+
+log = logging.getLogger('main')
+
+logging.getLogger().setLevel(logging.DEBUG)
+
+root_logger = logging.getLogger()
+
+logfile_handler = RotatingFileHandler(os.path.join(os.path.dirname('__file__'), 'log.txt'),
+                                      maxBytes=2048 * 1024,
+                                      backupCount=2)
+formatter = logging.Formatter(get_logging_format(),
+                              datefmt='%b %d %H:%M:%S')
+logfile_handler.setFormatter(formatter)
+logfile_handler.setLevel(logging.DEBUG)
+root_logger.addHandler(logfile_handler)
+
 
 
 class SessionUnlockingThread(Thread):
@@ -40,7 +64,7 @@ class SessionUnlockingThread(Thread):
     def run(self):
         while True:
             if str(self._app.icon).__contains__('unlock.ico'):
-                print("generating mouse event")
+                log.info("generating mouse event")
                 self._mouse_event(self._MOUSEEVENTF_MOVE, 0, 0, 0, 0)
             time.sleep(self._mouse_event_generation_timeout_sec)
 
@@ -55,29 +79,29 @@ if __name__ == '__main__':
     def disable_lock(sysTrayIcon):
         sysTrayIcon.icon = unlock_icon
         sysTrayIcon.refresh_icon()
-        print("disable session lock")
+        log.info("disable session lock")
 
 
     def enable_lock(sysTrayIcon):
         sysTrayIcon.icon = lock_icon
         sysTrayIcon.refresh_icon()
-        print("enable session lock")
+        log.info("enable session lock")
 
 
     def left_ckick():
         print(">> left click")
         print("%s" % sys_tray_app.icon)
         if str(sys_tray_app.icon).__contains__('unlock.ico'):
-            print("unlocked -> locked")
+            log.info("unlocked -> locked")
             enable_lock(sys_tray_app)
         else:
-            print("locked -> unlocked")
+            log.info("locked -> unlocked")
             disable_lock(sys_tray_app)
         print("<< left click")
 
 
     def bye(sysTrayIcon):
-        print('Bye, then.')
+        log.info('Bye, then.')
 
     menu_options = (('enable session locking', None, enable_lock),
                     ('disable session locking', None, disable_lock),

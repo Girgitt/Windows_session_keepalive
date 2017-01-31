@@ -1,10 +1,10 @@
-# desktop_lock_suspender
-A tiny taskbar-icon type of program to disable windows auto-locking.
+# desktop lock suspender: keep your session active
+A tiny taskbar-icon type of program to disable windows desktop auto-locking.
 
-Windows build is available in dist folder. Just unpack and run the exe or use archive attached to the release.
+Windows executable is available under release tab. Just unpack and run the exe. 
 
 
-Program stays in the taskbar and displays current operation mode using an icon:
+Program stays in the taskbar and displays current operation mode:
 
  * red lock means desktop session will be locked according to the policy / windows settings
 
