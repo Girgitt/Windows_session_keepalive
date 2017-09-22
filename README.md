@@ -1,5 +1,5 @@
-# desktop lock suspender: keep your session active
-A tiny taskbar-icon type of program to disable windows desktop auto-locking.
+# Windows session keepalive: disable automatic screen locking
+A tiny taskbar-icon type of program to disable windows screen auto-locking.
 
 Windows executable is available under release tab. Just unpack and run the exe. 
 
